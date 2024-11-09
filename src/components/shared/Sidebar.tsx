@@ -35,6 +35,7 @@ const Sidebar = () => {
 
 const SidebarDiv = styled.div`
   width: 240px;
+  font-family: "Host Grotesk", sans-serif;
 `;
 
 const LinkItem = styled.div<LinkItemProps>`

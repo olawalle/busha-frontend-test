@@ -28,6 +28,7 @@ const HeaderContent = styled.div`
   justify-content: space-between;
   max-width: 1142px;
   margin: 0 auto;
+  padding: 0 20px;
 `;
 
 const Logo = styled.img`
@@ -41,6 +42,7 @@ const UserName = styled.div`
   color: #000000;
   display: flex;
   align-items: center;
+  font-family: "Host Grotesk", sans-serif;
 `;
 
 const Avatar = styled.div`

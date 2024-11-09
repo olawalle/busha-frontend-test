@@ -103,7 +103,7 @@ const Wallets: FC = () => {
 
 const WalletsDiv = styled.div`
   width: 100%;
-  padding-left: 100px;
+  padding-left: 60px;
 `;
 
 const WalletHeader = styled.div`
@@ -117,6 +117,7 @@ const AddWalletButton = styled.button`
   border: 0;
   font-weight: 500;
   cursor: pointer;
+  font-family: "Host Grotesk", sans-serif;
 `;
 
 const WalletsH1 = styled.h1`

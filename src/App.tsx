@@ -28,7 +28,7 @@ const AppBody = styled.div`
   display: flex;
   max-width: 1142px;
   margin: 0 auto;
-  padding-top: 60px;
+  padding: 60px 20px;
 `;
 
 export default App;

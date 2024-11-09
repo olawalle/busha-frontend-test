@@ -24,6 +24,13 @@ const UserWallet: FC<{ account: IAccount }> = ({ account }) => {
     }
   };
 
+  const formatBalance = (balance: string): string => {
+    return Intl.NumberFormat("en-NG", {
+      maximumFractionDigits: 8,
+      minimumFractionDigits: 0,
+    }).format(parseFloat(balance));
+  };
+
   return (
     <UserWalletDiv>
       <WalletHeader>
@@ -31,7 +38,7 @@ const UserWallet: FC<{ account: IAccount }> = ({ account }) => {
         <WalletName>{account.name}</WalletName>
       </WalletHeader>
       <WalletBalance>
-        {account.balance} {account.currency}
+        {formatBalance(account.balance)} {account.currency}
       </WalletBalance>
 
       <CaretWrapper>
