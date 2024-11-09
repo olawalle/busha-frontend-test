@@ -27,7 +27,7 @@ const AddNewWallet: FC<{
   const getWallets = async (reload: boolean) => {
     reload && setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:3090/wallets");
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/wallets`);
       if (!response.ok) {
         setIsLoading(false);
         setIsError(true);
@@ -50,10 +50,9 @@ const AddNewWallet: FC<{
       return;
     }
 
-    setIsLoading(true);
     setCreationError(false);
     setIsSubmitting(true);
-    fetch("http://localhost:3090/accounts", {
+    fetch(`${process.env.REACT_APP_API_URL}/accounts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,8 +74,7 @@ const AddNewWallet: FC<{
         setCreationError(true);
       })
       .finally(() => {
-        setIsLoading(false);
-        setIsSubmitting(false); // Reset submitting state
+        setIsSubmitting(false);
       });
   };
 
@@ -112,27 +110,25 @@ const AddNewWallet: FC<{
             The crypto wallet will be created instantly and be available in your
             list of wallets.
           </ModalP>
-          <form>
-            <Label>Select wallet</Label>
-            <Select
-              onChange={(e) => setSelectedWallet(e.target.value)}
-              role="combobox"
-            >
-              {wallets.map((wallet, i) => (
-                <option key={i} value={wallet.currency}>
-                  {wallet.name}
-                </option>
-              ))}
-            </Select>
+          <Label>Select wallet</Label>
+          <Select
+            onChange={(e) => setSelectedWallet(e.target.value)}
+            role="combobox"
+          >
+            {wallets.map((wallet, i) => (
+              <option key={i} value={wallet.currency}>
+                {wallet.name}
+              </option>
+            ))}
+          </Select>
 
-            <ButtonDiv onClick={createWallet}>
-              <AppButton
-                text={"Create wallet"}
-                variant="primary"
-                loading={isSubmitting}
-              />
-            </ButtonDiv>
-          </form>
+          <ButtonDiv onClick={createWallet}>
+            <AppButton
+              text={"Create wallet"}
+              variant="primary"
+              loading={isSubmitting}
+            />
+          </ButtonDiv>
 
           {creationError && (
             <NetworkError>

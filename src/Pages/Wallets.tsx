@@ -37,8 +37,8 @@ const Wallets: FC = () => {
     setIsLoading(reload);
     try {
       const [response1, response2] = await Promise.all([
-        fetch("http://localhost:3090/accounts"),
-        fetch("http://localhost:3090/wallets"),
+        fetch(`${process.env.REACT_APP_API_URL}/accounts`),
+        fetch(`${process.env.REACT_APP_API_URL}/wallets`),
       ]);
       if (!response1.ok || !response2.ok) {
         setIsError(true);
