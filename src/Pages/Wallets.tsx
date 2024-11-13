@@ -59,8 +59,8 @@ const Wallets: FC = () => {
   };
 
   useEffect(() => {
-    getAccounts();
-    return () => {};
+    getAccounts()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
