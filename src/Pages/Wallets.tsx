@@ -6,6 +6,7 @@ import UserWallet from "../components/shared/UserWallet";
 import Modal from "../components/shared/Modal";
 import AddNewWallet from "../components/shared/AddNewWallet";
 import AppError from "../components/shared/AppError";
+import { apiUrl } from "../App";
 
 export interface IAccount {
   id: string;
@@ -33,12 +34,12 @@ const Wallets: FC = () => {
   const [accounts, setAccounts] = useState<IAccount[]>([]);
   const [wallets, setWallets] = useState<IWallet[]>([]);
 
-  const getAccounts = async (reload = true) => {
+  const getAccounts = async (reload = true, createdAccount?: IAccount) => {
     setIsLoading(reload);
     try {
       const [response1, response2] = await Promise.all([
-        fetch(`${process.env.REACT_APP_API_URL}/accounts`),
-        fetch(`${process.env.REACT_APP_API_URL}/wallets`),
+        fetch(`${apiUrl}/accounts`),
+        fetch(`${apiUrl}/wallets`),
       ]);
       if (!response1.ok || !response2.ok) {
         setIsError(true);
@@ -46,7 +47,8 @@ const Wallets: FC = () => {
       }
       const result1 = await response1.json();
       const result2 = await response2.json();
-      setAccounts(result1);
+      // used to simulate account addition on the live server since api updates are not persisted
+      setAccounts(createdAccount ? [...accounts, createdAccount] : result1);
       setWallets(result2);
       setIsError(false);
     } catch (err) {
@@ -90,9 +92,9 @@ const Wallets: FC = () => {
 
       <Modal isOpen={modalOpen}>
         <AddNewWallet
-          closeModal={(reload: boolean) => {
+          closeModal={(reload: boolean, createdAccount) => {
             setModalOpen(false);
-            reload && getAccounts(false);
+            reload && getAccounts(false, createdAccount);
           }}
           userWallets={wallets}
         />
@@ -104,6 +106,12 @@ const Wallets: FC = () => {
 const WalletsDiv = styled.div`
   width: 100%;
   padding-left: 60px;
+  padding-bottom: 30px;
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+    height: fit-content;
+  }
 `;
 
 const WalletHeader = styled.div`

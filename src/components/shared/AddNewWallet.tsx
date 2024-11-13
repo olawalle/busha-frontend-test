@@ -3,13 +3,14 @@ import styled from "styled-components";
 import close from "../../assets/images/close.svg";
 import closeRed from "../../assets/images/close-red.svg";
 import networkError from "../../assets/images/network-error.svg";
-import { IWallet } from "../../Pages/Wallets";
+import { IAccount, IWallet } from "../../Pages/Wallets";
 import AppButton from "./AppButton";
 import Loader from "./Loader";
 import AppError from "./AppError";
+import { apiUrl } from "../../App";
 
 const AddNewWallet: FC<{
-  closeModal: (e: boolean) => void;
+  closeModal: (e: boolean, account?: IAccount | undefined) => void;
   userWallets: IWallet[];
 }> = ({ closeModal, userWallets }) => {
   const [wallets, setWallets] = useState<IWallet[]>(userWallets);
@@ -27,7 +28,7 @@ const AddNewWallet: FC<{
   const getWallets = async (reload: boolean) => {
     reload && setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/wallets`);
+      const response = await fetch(`${apiUrl}/wallets`);
       if (!response.ok) {
         setIsLoading(false);
         setIsError(true);
@@ -52,7 +53,7 @@ const AddNewWallet: FC<{
 
     setCreationError(false);
     setIsSubmitting(true);
-    fetch(`${process.env.REACT_APP_API_URL}/accounts`, {
+    fetch(`${apiUrl}/accounts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +69,25 @@ const AddNewWallet: FC<{
         return res.json();
       })
       .then((data) => {
-        closeModal(true);
+        const selectedCurrrency: IWallet | undefined = wallets.find(
+          (wallet) => wallet.currency === selectedWallet
+        );
+        const dummyCreatedWallet: IAccount | undefined = selectedCurrrency
+          ? {
+              currency: selectedWallet,
+              hold: "0",
+              pending_balance: "0",
+              balance: "0",
+              name: selectedCurrrency?.name,
+              type: "digital",
+              imgURL:
+                "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000381/alice_v3/XLM.svg",
+              id: "tRsxUbQ",
+              deposit: true,
+              payout: true,
+            }
+          : undefined;
+        closeModal(true, dummyCreatedWallet);
       })
       .catch(() => {
         setCreationError(true);

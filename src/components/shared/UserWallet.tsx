@@ -57,6 +57,10 @@ const UserWalletDiv = styled.div`
   padding: 20px;
   background-image: url(${walletBG});
   background-size: cover;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 180px;
+  }
 `;
 
 const WalletHeader = styled.div`

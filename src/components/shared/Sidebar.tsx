@@ -1,11 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 
 interface LinkItemProps extends React.HTMLAttributes<HTMLDivElement> {
   active: boolean;
 }
 
-const Sidebar = () => {
+const Sidebar: FC<{
+  isOpen: boolean;
+  setIsSidebarOpen: (e: boolean) => void;
+}> = ({ isOpen, setIsSidebarOpen }) => {
   const linkItems: string[] = [
     "Wallets",
     "Prices",
@@ -19,11 +22,14 @@ const Sidebar = () => {
     setActiveLink(index);
   };
   return (
-    <SidebarDiv>
+    <SidebarDiv isOpen={isOpen}>
       {linkItems.map((item, index) => (
         <LinkItem
           key={index}
-          onClick={() => handleClick(index)}
+          onClick={() => {
+            handleClick(index);
+            setIsSidebarOpen(false);
+          }}
           active={index === activelink}
         >
           {item}
@@ -33,9 +39,20 @@ const Sidebar = () => {
   );
 };
 
-const SidebarDiv = styled.div`
+const SidebarDiv = styled.div<{ isOpen: boolean }>`
   width: 240px;
   font-family: "Host Grotesk", sans-serif;
+  display: block;
+  @media (max-width: 768px) {
+    width: 100%;
+    display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+    position: absolute;
+    top: 80px;
+    background: white;
+    height: calc(100vh - 80px);
+    left: 0;
+    padding: 20px;
+  }
 `;
 
 const LinkItem = styled.div<LinkItemProps>`
@@ -60,5 +77,8 @@ const LinkItem = styled.div<LinkItemProps>`
     font-weight: 500;
     background-color: #F5F7FA;
   `}
+  @media (max-width: 768px) {
+    width: 200px;
+  }
 `;
 export default Sidebar;

@@ -37,44 +37,16 @@
       "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000379/alice_v3/BTC.svg"
     },
     {
-      "currency": "USDT",
+      "currency": "XLM",
       "hold": "0",
       "pending_balance": "0",
       "balance": "0",
-      "name": "Tether",
+      "name": "Stellar",
       "type": "digital",
-      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000381/alice_v3/USDT.svg",
-      "id": "VF9KXgA"
-    },
-    {
-      "currency": "DOGE",
-      "hold": "0",
-      "pending_balance": "0",
-      "balance": "0",
-      "name": "Dogecoin",
-      "type": "digital",
-      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1619043964/alice_v3/DOGE.svg",
-      "id": "iXP_qrk"
-    },
-    {
-      "currency": "TRX",
-      "hold": "0",
-      "pending_balance": "0",
-      "balance": "0",
-      "name": "TRON",
-      "type": "digital",
-      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1600068604/alice_v3/TRX.svg",
-      "id": "KdZvAoz"
-    },
-    {
-      "currency": "LTC",
-      "hold": "0",
-      "pending_balance": "0",
-      "balance": "0",
-      "name": "Litecoin",
-      "type": "digital",
-      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000379/alice_v3/LTC.svg",
-      "id": "oMyERiy"
+      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000381/alice_v3/XLM.svg",
+      "id": "tRsxUbQ",
+      "deposit": true,
+      "payout": true
     },
     {
       "currency": "RMT",
@@ -84,7 +56,7 @@
       "name": "SureRemit",
       "type": "digital",
       "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000379/alice_v3/RMT.svg",
-      "id": "bEK1Mip"
+      "id": "tHvddc2"
     }
   ],
   "wallets": [
@@ -95,10 +67,34 @@
       "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000381/alice_v3/XLM.svg"
     },
     {
+      "currency": "LTC",
+      "name": "Litecoin",
+      "type": "digital",
+      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000379/alice_v3/LTC.svg"
+    },
+    {
+      "currency": "USDT",
+      "name": "Tether",
+      "type": "digital",
+      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1593000381/alice_v3/USDT.svg"
+    },
+    {
       "currency": "XRP",
       "name": "Ripple",
       "type": "digital",
       "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1606747749/alice_v3/XRP.svg"
+    },
+    {
+      "currency": "DOGE",
+      "name": "Dogecoin",
+      "type": "digital",
+      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1619043964/alice_v3/DOGE.svg"
+    },
+    {
+      "currency": "TRX",
+      "name": "TRON",
+      "type": "digital",
+      "imgURL": "https://res.cloudinary.com/dwoc5fknz/image/upload/v1600068604/alice_v3/TRX.svg"
     }
   ]
 }

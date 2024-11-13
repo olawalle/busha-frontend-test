@@ -1,16 +1,28 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import logo from "../../assets/images/logo.svg";
-const Header: FC = () => {
+import menu from "../../assets/images/menu.svg";
+import close from "../../assets/images/close.svg";
+
+const Header: FC<{
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (e: boolean) => void;
+}> = ({ isSidebarOpen, setIsSidebarOpen }) => {
   return (
     <HeaderDiv>
       <HeaderContent>
         <Logo alt="logo" src={logo} />
 
-        <UserName>
-          <Avatar>O</Avatar>
-          <Name>Oluwatobi Akindunjoye</Name>
-        </UserName>
+        <RightHeaderDiv>
+          <UserName>
+            <Avatar>O</Avatar>
+            <Name>Oluwatobi Akindunjoye</Name>
+          </UserName>
+
+          <ToggleSidebarButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+            <MenuIcon src={isSidebarOpen ? close : menu} alt="" />
+          </ToggleSidebarButton>
+        </RightHeaderDiv>
       </HeaderContent>
     </HeaderDiv>
   );
@@ -18,6 +30,27 @@ const Header: FC = () => {
 
 const HeaderDiv = styled.div`
   box-shadow: 0px 4px 12px 0px #0000000d;
+  position: sticky;
+  top: 0;
+  left: 0;
+`;
+const RightHeaderDiv = styled.div`
+  display: flex;
+`;
+
+const ToggleSidebarButton = styled.button`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    margin-left: 10px;
+    background: transparent;
+    border: 0;
+  }
+`;
+
+const MenuIcon = styled.img`
+  width: 20px;
+  height: 20px;
 `;
 
 const HeaderContent = styled.div`
@@ -62,6 +95,10 @@ const Name = styled.span`
   color: #3e4c59;
   font-size: 14px;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export default Header;

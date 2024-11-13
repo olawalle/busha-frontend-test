@@ -2,13 +2,23 @@ import styled from "styled-components";
 import Header from "./components/shared/Header";
 import Sidebar from "./components/shared/Sidebar";
 import Wallets from "./Pages/Wallets";
+import { useState } from "react";
+
+export const apiUrl =
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_API_URL_LOCAL
+    : process.env.REACT_APP_API_URL;
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   return (
     <AppWrapper>
-      <Header />
+      <Header
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
       <AppBody>
-        <Sidebar />
+        <Sidebar isOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
         <Wallets />
       </AppBody>
     </AppWrapper>
